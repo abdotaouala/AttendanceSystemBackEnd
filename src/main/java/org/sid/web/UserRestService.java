@@ -28,14 +28,18 @@ public class UserRestService {
 	private PshRawRepository pshRawRepository;
 	
 	//Method for update Attendance
-	@RequestMapping(value="/attendance" ,method=RequestMethod.PUT)
-	public void attendance(@RequestParam(name="id") Long id,@RequestParam(name="val") int val){
+	@RequestMapping(value="/attendance" ,method=RequestMethod.POST)
+	public void attendance(@RequestParam(name="id") Long id,@RequestParam(name="val") int val,@RequestParam(name="type") int type){
+		System.out.println(val);
 		User user=userRepository.getOne(id);
 		//'Enter = 1; Leave = 0
+	
 		PshRaw pshRaw=new PshRaw();
 		pshRaw.setDirect(val);
 		Date d=new Date();
 		pshRaw.setTime(d);
+		pshRaw.setUser(user);
+		pshRaw.setType(type);
 		pshRawRepository.save(pshRaw);
 	}
 	
@@ -49,14 +53,14 @@ public class UserRestService {
 	//All attendance for one user
 	@RequestMapping(value="/chercher",method=RequestMethod.GET)
 	public Page<PshRaw> search(@RequestParam(name="name",defaultValue="") String name,@RequestParam(name="page",defaultValue="0") int page,@RequestParam(name="size",defaultValue="4") int size){
-	return pshRawRepository.findByUser(name, new PageRequest(page, size));
+	return pshRawRepository.findByUserName(name, new PageRequest(page, size));
 		
 	}
 	
 	//search info for user by name
 	@RequestMapping(value="/searchUsers",method=RequestMethod.GET)
 	public Page<User> searchUser(@RequestParam(name="name",defaultValue="") String name,@RequestParam(name="page",defaultValue="0") int page,@RequestParam(name="size",defaultValue="4") int size){
-		return userRepository.rechercher("%"+name+"%", new PageRequest(page, size));
+		return userRepository.rechercher(name, new PageRequest(page, size));
 	}
 
 }

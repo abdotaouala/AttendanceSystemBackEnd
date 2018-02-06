@@ -29,16 +29,16 @@ public class FileActualiteApplication implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 	//****************Test*************************//
-	User user =new User("abdlaftah");
-	user=userRepository.save(user);
+/*	User user =new User("ta");
+	//user=userRepository.save(user);
 	PshRaw pshRaw=new PshRaw(new Date(), 1	, 1, user);
-	pshRawRepository.save(pshRaw);
+	//pshRawRepository.save(pshRaw);
 	///************************************//////////
-	List<User> users=userRepository.findAll();
+/*	List<User> users=userRepository.findAll();
 	for (Iterator iterator = users.iterator(); iterator.hasNext();) {
 		User user2 = (User) iterator.next();
-		System.out.println(user2.getName());
-	}
+		System.out.println(user2.getName());*/
+	//}
 	
 		
 	}

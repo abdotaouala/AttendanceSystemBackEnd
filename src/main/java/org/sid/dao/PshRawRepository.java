@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PshRawRepository extends JpaRepository<PshRaw, Long>{
 
-	public Page<PshRaw> findByUser(String name,Pageable pageable);
+	public Page<PshRaw> findByUserName(String name,Pageable pageable);
 }
